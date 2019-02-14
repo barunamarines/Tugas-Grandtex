@@ -37,6 +37,8 @@
 	        // $this->db->where('status=0');
 	        //varibel data_stok/input_data berasal dari tabel input data banyak
 	        $input_data=$this->db->get('waste_produksi');
+
+	        
 	        return $input_data->result();
     	}
 
@@ -47,6 +49,29 @@
 			$this->db->insert('login',$data);
 			return TRUE;
 		}
+
+		//input data berasal dari tabel database hasil penyerahaan_waste_produksi
+	    public function tampil_data_hasil_balepress()
+	    {
+	    	$this->db->select("nama_waste,jenis_waste,bagian,SUM(jml_kg) as berat,SUM(jml_karung) as karung");
+	    
+        	$this->db->group_by("nama_waste,jenis_waste,bagian,jml_karung,jml_kg");
+        
+        //varibel data_stok/input_data berasal dari tabel hasil_bpw
+        $tampil_data=$this->db->get('stock_waste_produksi');
+        return $tampil_data->result();
+    	}
+
+
+    	//tampilkan data input_banyak secara detail dari VIEW HASIL BALEPRESS DUA
+    	public function panggil_fungsi_hasil_balepress($where)
+	    {
+	        $this->db->where($where);
+	        // $this->db->where('status=0');
+	        //varibel data_stok/input_data berasal dari tabel input data banyak
+	        $input_data=$this->db->get('stock_waste_produksi');
+	        return $input_data->result();
+    	}
 
 	}
 

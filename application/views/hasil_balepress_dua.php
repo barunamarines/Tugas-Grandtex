@@ -29,36 +29,50 @@ $this->load->view('template/sidebar');
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Penyerahan Waste Produksi</li>
+        <li class="active">Hasil Produksi</li>
     </ol>
 </section>
 
 <!-- Main content -->
-<div class="container" style="width: 500px; margin-top: 50px;">
-                <table class="table">
-                    <h1 class="text-center">Penyerahan Waste Produksi</h1>
-                    <br>
-                    <form action="<?php echo base_url(); ?>index.php/Penyerahan_waste_produksi/halaman_dua_penyerahan_waste_produksi" method="get">
+<div class="container" style="width: 600px; margin-top: 50px;">
+            <table class="table text-center">
+                <h2 class="text-center py-3">Hasil Produksi</h2>
+               <!--  <form action="<?php echo base_url(); ?>index.php/Penyerahan_waste_produksi/tiga_penyerahan_waste_produksi" method="get"> -->
+                    <thead>
                         <tr>
-                            <th><label for="tanggal">Tanggal</label></th>
-                                <td class="container" style="width: 300px;">
-                                      <div class="input-group date" data-provide="datepicker">
-                                            <input type="text" class="form-control" name="tanggal" id="tanggal" placeholder="Input Tanggal">
-                                                <div class="input-group-addon">
-                                                    <span class="glyphicon glyphicon-th"></span>
-                                                </div>
-                                        </div>
-                                </td>
+                            <th>Nama Waste</th>
+                            <th>Bagian</th>
+                            <th>Jenis Waste</th>
+                            <th>Jumlah Kg</th>
                         </tr>
+                    </thead>
+                    <tbody>
+                       <?php
+                        foreach ($input_data as $key => $value)
+                        {
+                        ?>
                         <tr>
-                            <th><label for="tujuan">Tujuan</label></th>
-                                <td><input type="text" name="tujuan" id="tujuan" class="form-control" required autofocus maxlength="20" placeholder="Input tujuan" value="Gudang"></td>
+                            <?php
+                            //Panggil Function sesuai di controller
+
+                            //dari tanda tanya html tanggal berubah menjadi varibel tanggal dari cotroller yang menerima data halaman sebelumnnya 
+                            ?>
+                            <td><a href="<?php echo base_url ();?>index.php/Hasil_balepress/pengeluaran_data?tanggal=<?php echo $tanggal ?>&nama_waste=<?php echo $value->nama_waste ?>&jenis_waste=<?php echo $value->jenis_waste ?>&bagian=<?php echo $value->bagian ?>"><?php echo $value->nama_waste; ?></a></td>
+                            <td><?php echo $value->bagian; ?></td>
+                            <td><?php echo $value->jenis_waste; ?></td>
+                            
+                            <!-- <td><?php echo $tanggal; ?></td>
+                            <td><?php echo $value->karung; ?></td> -->
+                            <td><?php echo $value->berat; ?></td>
+                            
+
                         </tr>
-                        <tr>
-                            <td><button type="submit" name="simpan" class="btn btn-primary">Submit</button></td>
-                        </tr>
-                    </form>
-                </table>
+                        <?php
+                            }
+                        ?>
+                    </tbody>
+               <!--  </form> -->
+            </table>
         </div>
 
 
@@ -101,16 +115,7 @@ $this->load->view('template/js');
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url('assets/AdminLTE-2.0.5/dist/js/demo.js') ?>" type="text/javascript"></script>
 
-<!-- Datepicker -->
-<script type="text/javascript">
- $(function(){
-  $(".datepicker").datepicker({
-      format: 'yyyy-mm-dd',
-      autoclose: true,
-      todayHighlight: true,
-  });
- });
-</script>
+
 
 <?php
 $this->load->view('template/foot');

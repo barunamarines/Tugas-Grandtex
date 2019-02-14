@@ -29,16 +29,16 @@ $this->load->view('template/sidebar');
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Penyerahan Waste Produksi</li>
+        <li class="active">Hasil Balepress</li>
     </ol>
 </section>
 
 <!-- Main content -->
 <div class="container" style="width: 500px; margin-top: 50px;">
                 <table class="table">
-                    <h1 class="text-center">Penyerahan Waste Produksi</h1>
+                    <h1 class="text-center">Hasil Balepress</h1>
                     <br>
-                    <form action="<?php echo base_url(); ?>index.php/Penyerahan_waste_produksi/halaman_dua_penyerahan_waste_produksi" method="get">
+                    <form action="<?php echo base_url(); ?>index.php/Hasil_balepress/hasil_balepress_dua" method="get">
                         <tr>
                             <th><label for="tanggal">Tanggal</label></th>
                                 <td class="container" style="width: 300px;">
@@ -51,8 +51,12 @@ $this->load->view('template/sidebar');
                                 </td>
                         </tr>
                         <tr>
-                            <th><label for="tujuan">Tujuan</label></th>
-                                <td><input type="text" name="tujuan" id="tujuan" class="form-control" required autofocus maxlength="20" placeholder="Input tujuan" value="Gudang"></td>
+                            <th><label for="nama_waste">Nama Waste</label></th>
+                                <td><input type="text" name="nama_waste" id="nama_waste" class="form-control" required autofocus maxlength="20" placeholder="Input Nama Waste" value=""></td>
+                        </tr>
+                        <tr>
+                            <th><label for="jumlah_bale">Jumlah Bale</label></th>
+                                <td><input type="text" name="jumlah_bale" id="jumlah_bale" class="form-control" required autofocus maxlength="20" placeholder="Input Jumlah Bale" value=""></td>
                         </tr>
                         <tr>
                             <td><button type="submit" name="simpan" class="btn btn-primary">Submit</button></td>

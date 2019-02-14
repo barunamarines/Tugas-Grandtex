@@ -1,24 +1,24 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Penyerahan_waste_produksi extends CI_Controller {
+class Hasil_balepress extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('penyerahan_waste_produksi');
+		$this->load->view('hasil_bale_press');
 	}
 
-	public function halaman_dua_penyerahan_waste_produksi()
+	public function hasil_balepress_dua()
 	{
 
 		//siapkan data halaman
 		$data=array();
-		$data['dua_penyerahan_waste_produksi']='dua_penyerahan_waste_produksi';
+		$data['hasil_balepress_dua']='hasil_balepress_dua';
 
 		//terima data dari halaman sebelumnya
 		$data['tanggal']=date('Y-m-d', strtotime($this->input->get('tanggal')));
 
-		$data['tujuan']=$this->input->get('tujuan');
+		// $data['tujuan']=$this->input->get('tujuan');
 
 		// echo json_encode(strtotime($this->input->get('tanggal'))); 
 		// exit();
@@ -26,38 +26,42 @@ class Penyerahan_waste_produksi extends CI_Controller {
 		// $this->session->set_userdata('tujuan', $data['tujuan']);
 
 		// //menetapkan tanggal yang sudah di submit
-		
-
-		$this->session->set_userdata('tanggal', $data['tanggal']);
-		$this->session->set_userdata('tujuan', $data['tujuan']);
+		// $this->session->set_userdata('tanggal', $data['tanggal']);
 
 		//ambil data waste_produksi dari database
-		$data['input_data'] = $this->Gtx_model->tampil_data();
+		$data['input_data'] = $this->Gtx_model->tampil_data_hasil_balepress();
 
 		//kirim data ke view utk tanggal
-		$this->load->view('dua_penyerahan_waste_produksi',$data);
+		$this->load->view('hasil_balepress_dua',$data);
+
+		// $this->load->view('hasil_balepress_dua');
 	}
 
-		//panggil data, ala gradi
+	public function hasil_balepress_tiga()
+	{
+		$this->load->view('hasil_balepress_tiga');
+	}
+
+	//panggil data, ala gradi
 		public function pengeluaran_data()
 	{
 		$this->load->model('Gtx_model');
 		
 		$data=array();
-		$data['tanggal']=$this->input->get('tanggal');
+		// $data['tanggal']=$this->input->get('tanggal');
 		$data['nama_waste']=$this->input->get('nama_waste');
 		$data['jenis_waste']=$this->input->get('jenis_waste');
 		$data['bagian']=$this->input->get('bagian');
-		$data['asal_waste']=$this->input->get('asal_waste');
+		// $data['asal_waste']=$this->input->get('asal_waste');
 		// $data['tujuan']=$this->input->get('tujuan');
 		
 		// $data['no_karung']=$this->input->get('no_karung');
 		// $data['shift']=$this->input->get('shift');
 		// $data['jml_karung']=$this->input->get('jml_karung');
 		$data['kilogram']=$this->input->get('jml_kg');
-		$data['user']=$this->input->get('user');
-		$data['timestamp']=$this->input->get('timestamp');
-		$data['status']=$this->input->get('status');
+		// $data['user']=$this->input->get('user');
+		// $data['timestamp']=$this->input->get('timestamp');
+		// $data['status']=$this->input->get('status');
 		$data['tanggal_pengeluaran']=$this->input->get('tanggal_pengeluaran');
 		
 
@@ -66,7 +70,7 @@ class Penyerahan_waste_produksi extends CI_Controller {
 			'nama_waste'=> $data['nama_waste'],
 			'jenis_waste'=> $data['jenis_waste'],
 			'bagian'=> $data['bagian'],
-			'asal_waste'=> $data['asal_waste'],
+			// 'asal_waste'=> $data['asal_waste'],
 			// 'no_karung' => $data['no_karung'],
 			// 'shift' => $data['shift'],
 			// 'jml_karung' => $data['jml_karung'],
@@ -75,16 +79,9 @@ class Penyerahan_waste_produksi extends CI_Controller {
 		
 			
 	);
-		$data['input_data']=$this->Gtx_model->panggil_fungsi($where);
-		$this->load->view('tiga_penyerahan_waste_produksi',$data);
+		$data['input_data']=$this->Gtx_model->panggil_fungsi_hasil_balepress($where);
+		$this->load->view('hasil_balepress_tiga',$data);
 
-			
-
-	}
-
-	public function tiga_penyerahan_waste_produksi()
-	{
-		$this->load->view('tiga_penyerahan_waste_produksi');
 	}
 
 	//masukan data ke databse, gradi (TIGA HALAMAN_WASTE_PRODUKSI)
@@ -108,7 +105,7 @@ class Penyerahan_waste_produksi extends CI_Controller {
 		$data['input_data_id'] = $this->input->post('input_data_id');
 		$data['tanggal'] = $this->input->get('tanggal');
 
-		$data['tujuan'] = $this->session->set_userdata('tujuan');
+		$data['tujuan'] = $this->input->get('tujuan');
 		
 		// echo json_encode($this->input->post($data['tujuan']));
 		// exit();
@@ -128,7 +125,7 @@ class Penyerahan_waste_produksi extends CI_Controller {
 				//dikanan : data yg mau disimpannya + harus sama dengan variabel penampung diatas
 				//variabel array (*['jumlah_kilogram']) di belakangnya harus menggunakan variabel index (*$i)
 				'tanggal' => $data['tanggal'],
-				'tujuan' => $data['tujuan'],
+				// 'tujuan' => $data['tujuan'],
 				'nama_waste' => $input_data['nama_waste'],
 				'jenis_waste' => $input_data['jenis_waste'],
 				'bagian' => $input_data['bagian'],

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 13, 2019 at 07:23 AM
+-- Generation Time: Feb 14, 2019 at 04:49 PM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -162,7 +162,31 @@ CREATE TABLE `penyerahan_waste_produksi` (
 INSERT INTO `penyerahan_waste_produksi` (`id`, `tanggal`, `nama_waste`, `jenis_waste`, `bagian`, `no_karung`, `shift`, `jml_karung`, `jml_kg`, `tujuan`, `asal_waste`, `user`, `timestamp`) VALUES
 (1, '2019-02-12', 'Amerika', 'Kering', 'Atas', 'F0022', 'B', 1, 15, '', 'Gradi', 'Baruna', '2019-02-12 13:00:44'),
 (4, '2019-02-12', 'Amerika', 'Kering', 'Atas', 'F0022', 'B', 1, 15, '', 'Gradi', 'Baruna', '2019-02-12 13:00:44'),
-(19, '0000-00-00', 'Amerika', 'Kering', 'Atas', '3', 'B', 1, 10, '', 'basah', 'Baruna', '2019-02-12 14:00:37');
+(23, '2019-02-24', 'Amerika', 'Kering', 'Atas', '3', 'B', 1, 10, '', 'basah', 'Baruna', '2019-02-12 14:00:37'),
+(25, '2019-02-14', 'Amerika', 'Kering', 'Atas', '001', 'A', 1, 12, '', 'Indonesia', 'Baruna', '2019-02-12 13:53:21'),
+(26, '2019-02-22', 'Argentina', 'Basah', 'bawah', 'D-134', 'A', 1, 12, '', 'Gtx', 'Marines', '2019-02-13 02:11:10'),
+(27, '2019-02-15', 'Amerika', 'Kering', 'Atas', '3', 'B', 1, 10, '', 'basah', 'Baruna', '2019-02-12 14:00:37'),
+(29, '2019-02-01', 'Argentina', 'Basah', 'bawah', 'DD001', 'N', 1, 123, '', 'Padalarang', 'Marines', '2019-02-13 03:16:51'),
+(30, '2019-02-28', 'Argentina', 'Basah', 'bawah', 'DD001', 'N', 1, 123, '', 'Padalarang', 'Marines', '2019-02-13 03:16:51'),
+(31, '2019-02-16', 'Amerika', 'Kering', 'Atas', 'F0022', 'B', 1, 15, '', 'Gradi', 'Baruna', '2019-02-12 13:00:44'),
+(32, '2019-02-28', 'Argentina', 'Basah', 'bawah', 'F-990d', 'B', 1, 45, '', 'Lengkeng', 'Marines', '2019-02-13 01:49:23'),
+(33, '2019-02-15', 'Amerika', 'Kering', 'Atas', '2', 'A', 1, 20, '', 'basah', 'Baruna', '2019-02-12 14:00:36'),
+(34, '2019-03-16', 'Amerika', 'Kering', 'Atas', '2', 'A', 1, 20, '', 'basah', 'Baruna', '2019-02-12 14:00:36'),
+(35, '2019-02-02', 'Amerika', 'Kering', 'Atas', '3', 'B', 1, 10, '', 'basah', 'Baruna', '2019-02-12 14:00:37'),
+(36, '2019-02-02', 'Amerika', 'Kering', 'Atas', 'F0022', 'B', 1, 15, '', 'Gradi', 'Baruna', '2019-02-12 13:00:44'),
+(37, '2019-02-12', 'Amerika', 'Kering', 'Atas', '2', 'A', 1, 20, '', 'basah', 'Baruna', '2019-02-12 14:00:36');
+
+--
+-- Triggers `penyerahan_waste_produksi`
+--
+DELIMITER $$
+CREATE TRIGGER `Rekap data` AFTER INSERT ON `penyerahan_waste_produksi` FOR EACH ROW BEGIN
+
+INSERT INTO stock_waste_produksi SET id=NEW.id, nama_waste=NEW.nama_waste,jenis_waste=NEW.jenis_waste,bagian=NEW.bagian,jml_karung=NEW.jml_karung,jml_kg=NEW.jml_kg ON DUPLICATE KEY UPDATE id=id=+NEw.id=jenis_waste,jml_karung=jml_karung=+NEW.jml_karung, jml_kg=jml_kg=+NEW.jml_kg;
+
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -185,12 +209,23 @@ CREATE TABLE `stock_gudang_waste` (
 --
 
 CREATE TABLE `stock_waste_produksi` (
+  `id` int(11) NOT NULL,
   `nama_waste` varchar(50) NOT NULL,
   `jenis_waste` varchar(50) NOT NULL,
   `bagian` varchar(50) NOT NULL,
   `jml_karung` int(11) NOT NULL,
   `jml_kg` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `stock_waste_produksi`
+--
+
+INSERT INTO `stock_waste_produksi` (`id`, `nama_waste`, `jenis_waste`, `bagian`, `jml_karung`, `jml_kg`) VALUES
+(34, 'Amerika', 'Kering', 'Atas', 1, 20),
+(35, 'Amerika', 'Kering', 'Atas', 1, 10),
+(36, 'Amerika', 'Kering', 'Atas', 1, 15),
+(37, 'Amerika', 'Kering', 'Atas', 1, 20);
 
 -- --------------------------------------------------------
 
@@ -226,7 +261,8 @@ INSERT INTO `waste_produksi` (`id`, `tanggal`, `nama_waste`, `jenis_waste`, `bag
 (47, '2019-02-13', 'Argentina', 'Basah', 'bawah', 'Lengkeng', 'F-990d', 'B', 1, 45, 'Marines', '2019-02-13 01:49:23', 1),
 (48, '2019-02-14', 'Argentina', 'Basah', 'bawah', 'Gtx', 'D-134', 'A', 1, 12, 'Marines', '2019-02-13 02:11:10', 1),
 (49, '2019-02-14', 'Argentina', 'Basah', 'bawah', 'Gtx', 'D-456', 'C', 1, 43, 'Marines', '2019-02-13 02:11:11', 1),
-(50, '2019-02-28', 'Argentina', 'Basah', 'bawah', 'Padalarang', 'DD001', 'N', 1, 123, 'Marines', '2019-02-13 03:16:51', 1);
+(50, '2019-02-28', 'Argentina', 'Basah', 'bawah', 'Padalarang', 'DD001', 'N', 1, 123, 'Marines', '2019-02-13 03:16:51', 1),
+(51, '2019-02-16', 'Argentina', 'Basah', 'bawah', 'Garut', '2', 'A', 1, 12, 'Marines', '2019-02-14 03:56:08', 0);
 
 --
 -- Indexes for dumped tables
@@ -266,6 +302,12 @@ ALTER TABLE `penyerahan_hasil_balepress`
 -- Indexes for table `penyerahan_waste_produksi`
 --
 ALTER TABLE `penyerahan_waste_produksi`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `stock_waste_produksi`
+--
+ALTER TABLE `stock_waste_produksi`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -312,13 +354,19 @@ ALTER TABLE `penyerahan_hasil_balepress`
 -- AUTO_INCREMENT for table `penyerahan_waste_produksi`
 --
 ALTER TABLE `penyerahan_waste_produksi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
+--
+-- AUTO_INCREMENT for table `stock_waste_produksi`
+--
+ALTER TABLE `stock_waste_produksi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `waste_produksi`
 --
 ALTER TABLE `waste_produksi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

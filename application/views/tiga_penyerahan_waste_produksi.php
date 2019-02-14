@@ -37,7 +37,7 @@ $this->load->view('template/sidebar');
 <div class="container" style="width: 600px; margin-top: 50px;">
             <table class="table text-center">
                 <h2 class="text-center py-3">Penyerahan Waste Produksi</h2>
-                <form id="form-akhir" action="<?php echo base_url(); ?>index.php/Penyerahan_waste_produksi/tiga_penyerahan_waste_produksi_ke_database?tanggal=<?php echo $tanggal_pengeluaran?>" method="post"> 
+                <form id="form-akhir" action="<?php echo base_url(); ?>index.php/Penyerahan_waste_produksi/tiga_penyerahan_waste_produksi_ke_database?tanggal=<?php echo $tanggal?>" method="post"> 
                     <thead>
                         <tr>
                             <th>No</th>
