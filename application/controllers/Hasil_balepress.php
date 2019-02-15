@@ -63,20 +63,20 @@ class Hasil_balepress extends CI_Controller {
 		// $data['timestamp']=$this->input->get('timestamp');
 		// $data['status']=$this->input->get('status');
 		$data['tanggal_pengeluaran']=$this->input->get('tanggal_pengeluaran');
+
+
 		
 
 		$where=array(
 			// 'tanggal'=> $data['tanggal'],
 			'nama_waste'=> $data['nama_waste'],
 			'jenis_waste'=> $data['jenis_waste'],
-			'bagian'=> $data['bagian'],
+			'bagian'=> $data['bagian']
 			// 'asal_waste'=> $data['asal_waste'],
 			// 'no_karung' => $data['no_karung'],
 			// 'shift' => $data['shift'],
 			// 'jml_karung' => $data['jml_karung'],
 			// 'jml_kg' => $data['jml_kg']
-
-		
 			
 	);
 		$data['input_data']=$this->Gtx_model->panggil_fungsi_hasil_balepress($where);

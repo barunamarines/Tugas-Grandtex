@@ -18,7 +18,7 @@ class Penyerahan_waste_produksi extends CI_Controller {
 		//terima data dari halaman sebelumnya
 		$data['tanggal']=date('Y-m-d', strtotime($this->input->get('tanggal')));
 
-		$data['tujuan']=$this->input->get('tujuan');
+		 $data['tujuan']=$this->input->get('tujuan');
 
 		// echo json_encode(strtotime($this->input->get('tanggal'))); 
 		// exit();
@@ -29,6 +29,7 @@ class Penyerahan_waste_produksi extends CI_Controller {
 		
 
 		$this->session->set_userdata('tanggal', $data['tanggal']);
+		
 		$this->session->set_userdata('tujuan', $data['tujuan']);
 
 		//ambil data waste_produksi dari database
@@ -108,7 +109,7 @@ class Penyerahan_waste_produksi extends CI_Controller {
 		$data['input_data_id'] = $this->input->post('input_data_id');
 		$data['tanggal'] = $this->input->get('tanggal');
 
-		$data['tujuan'] = $this->session->set_userdata('tujuan');
+		$data['tujuan'] = $this->session->userdata('tujuan');
 		
 		// echo json_encode($this->input->post($data['tujuan']));
 		// exit();

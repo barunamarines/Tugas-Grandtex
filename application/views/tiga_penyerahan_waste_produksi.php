@@ -40,7 +40,7 @@ $this->load->view('template/sidebar');
                 <form id="form-akhir" action="<?php echo base_url(); ?>index.php/Penyerahan_waste_produksi/tiga_penyerahan_waste_produksi_ke_database?tanggal=<?php echo $tanggal?>" method="post"> 
                     <thead>
                         <tr>
-                            <th>No</th>
+                            <th>No <?php echo $this->session->userdata('tujuan'); ?></th>
                             <th>No. Karung</th>
                             <th>Shift</th>
                             <th>Jml Kg</th>

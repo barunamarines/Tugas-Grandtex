@@ -59,7 +59,7 @@ $this->load->view('template/sidebar');
 
                             //dari tanda tanya html tanggal berubah menjadi varibel tanggal dari cotroller yang menerima data halaman sebelumnnya 
                             ?>
-                            <td><a href="<?php echo base_url ();?>index.php/Penyerahan_waste_produksi/pengeluaran_data?tanggal=<?php echo $tanggal ?>&nama_waste=<?php echo $value->nama_waste ?>&jenis_waste=<?php echo $value->jenis_waste ?>&bagian=<?php echo $value->bagian ?>&asal_waste=<?php echo $value->asal_waste ?>&tujuan=<?php echo $tujuan ?>"><?php echo $value->nama_waste; ?></a></td>
+                            <td><a href="<?php echo base_url ();?>index.php/Penyerahan_waste_produksi/pengeluaran_data?tanggal=<?php echo $tanggal ?>&nama_waste=<?php echo $value->nama_waste ?>&jenis_waste=<?php echo $value->jenis_waste ?>&bagian=<?php echo $value->bagian ?>&asal_waste=<?php echo $value->asal_waste ?>"><?php echo $value->nama_waste; ?></a></td>
                             <td><?php echo $value->jenis_waste; ?></td>
                             <td><?php echo $value->bagian; ?></td>
                             <td><?php echo $value->tanggal; ?></td>
