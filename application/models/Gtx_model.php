@@ -69,9 +69,38 @@
 	        $this->db->where($where);
 	        // $this->db->where('status=0');
 	        //varibel data_stok/input_data berasal dari tabel input data banyak
-	        $input_data=$this->db->get('stock_waste_produksi');
-	        return $input_data->result();
+	        $ambil_data=$this->db->get('stock_waste_produksi');
+	        return $ambil_data->result();
     	}
+
+
+
+
+
+
+
+    	//input data berasal dari tabel database hasil balepress
+	    public function model_hasil_balepress()
+	    {
+	    	$this->db->select("tanggal,nama_waste,jenis_waste,bagian,no_bale,shift,jml_balepress,user,SUM(jml_kg) as berat,SUM(id) as id,tanggal,timestamp,status");
+	    
+        	$this->db->group_by("tanggal,nama_waste,jenis_waste,bagian,no_bale,shift,jml_balepress,jml_kg,user,timestamp,status");
+        
+        //varibel data_stok/input_data berasal dari tabel hasil_balepress
+        $tampil_data=$this->db->get('hasil_balepress');
+        return $tampil_data->result();
+    	}
+
+    	//tampilkan data hasil Balepress secara detail
+    	public function panggil_balepress($where)
+	    {
+	        $this->db->where($where);
+	        // $this->db->where('status=0');
+	        //varibel data_stok/input_data berasal dari tabel input data banyak
+	        $tampil_data=$this->db->get('hasil_balepress');
+	        return $tampil_data->result();
+    	}
+
 
 	}
 

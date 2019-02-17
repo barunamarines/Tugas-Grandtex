@@ -79,9 +79,8 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i> General Elements</a></li>
+                    <li><a href="<?php echo site_url('PENYERAHAN_HASIL_BALEPRESS') ?>"><i class="fa fa-circle-o"></i> Input Penyerahan Hasil Balepress</a></li>
                     <li><a href="#"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Editors</a></li>
                 </ul>
             </li>
             <li class="treeview">

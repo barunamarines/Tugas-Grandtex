@@ -32,6 +32,9 @@ class Penyerahan_waste_produksi extends CI_Controller {
 		
 		$this->session->set_userdata('tujuan', $data['tujuan']);
 
+		//session versi native
+		$_SESSION['tujuan2'] = $data['tujuan'];
+
 		//ambil data waste_produksi dari database
 		$data['input_data'] = $this->Gtx_model->tampil_data();
 

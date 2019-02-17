@@ -34,44 +34,31 @@ $this->load->view('template/sidebar');
 </section>
 
 <!-- Main content -->
-<div class="container" style="width: 800px; margin-top: 50px;">
-            <table class="table">
-                <h2 class="text-center py-3">Penyerahan Hasil Balepress</h2>
-               <form action="<?php echo base_url(); ?>index.php/Penyerahan_waste_produksi/tiga_penyerahan_waste_produksi" method="get">
-                    <thead>
+<div class="container" style="width: 500px; margin-top: 50px;">
+                <table class="table">
+                    <h1 class="text-center">Penyerahan Hasil Balepress</h1>
+                    <br>
+                    <form action="<?php echo base_url(); ?>index.php/PENYERAHAN_HASIL_BALEPRESS/PENYERAHAN_HASIL_BALEPRESS_DUA" method="get">
                         <tr>
-                            <th>Nama Waste</th>
-                            <th>Bagian</th>
-                            <th>Jenis Waste</th>
-                            <th>Jumlah Kg</th>
+                            <th><label for="tanggal">Tanggal</label></th>
+                                <td class="container" style="width: 300px;">
+                                      <div class="input-group date" data-provide="datepicker">
+                                            <input type="text" class="form-control" name="tanggal" id="tanggal" placeholder="Input Tanggal">
+                                                <div class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-th"></span>
+                                                </div>
+                                        </div>
+                                </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                       <?php
-                        foreach ($input_data as $key => $value)
-                        {
-                        ?>
                         <tr>
-                            <?php
-                            //Panggil Function sesuai di controller
-
-                            //dari tanda tanya html tanggal berubah menjadi varibel tanggal dari cotroller yang menerima data halaman sebelumnnya 
-                            ?>
-                            <td><a href="<?php echo base_url ();?>index.php/Hasil_balepress/pengeluaran_data?tanggal=<?php echo $tanggal ?>&nama_waste=<?php echo $value->nama_waste ?>&jenis_waste=<?php echo $value->jenis_waste ?>&bagian=<?php echo $value->bagian ?>&jumlah_bale=<?php echo $jumlah_bale ?>"><?php echo $value->nama_waste; ?></a></td>
-                            <td><?php echo $value->bagian; ?></td>
-                             <td><?php echo $value->jenis_waste; ?></td>
-                            <!-- <td><?php echo $value->tanggal; ?></td> -->
-                           <!--  <td><?php echo $value->jml_karung; ?></td> -->
-                            <td><?php echo $value->berat; ?></td>
-                            
-
+                            <th><label for="tujuan">Tujuan</label></th>
+                                <td><input type="text" name="tujuan" id="tujuan" class="form-control" required autofocus maxlength="20" placeholder="Input Tujuan" value=""></td>
                         </tr>
-                        <?php
-                            }
-                        ?>
-                    </tbody>
-               <!--  </form> -->
-            </table>
+                        <tr>
+                            <td><button type="submit" name="simpan" class="btn btn-primary">Submit</button></td>
+                        </tr>
+                    </form>
+                </table>
         </div>
 
 
@@ -114,7 +101,16 @@ $this->load->view('template/js');
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url('assets/AdminLTE-2.0.5/dist/js/demo.js') ?>" type="text/javascript"></script>
 
-
+<!-- Datepicker -->
+<script type="text/javascript">
+ $(function(){
+  $(".datepicker").datepicker({
+      format: 'yyyy-mm-dd',
+      autoclose: true,
+      todayHighlight: true,
+  });
+ });
+</script>
 
 <?php
 $this->load->view('template/foot');

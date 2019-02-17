@@ -34,43 +34,44 @@ $this->load->view('template/sidebar');
 </section>
 
 <!-- Main content -->
-<div class="container" style="width: 800px; margin-top: 50px;">
-            <table class="table">
+<div class="container" style="width: 600px; margin-top: 50px;">
+            <table class="table text-center">
                 <h2 class="text-center py-3">Penyerahan Hasil Balepress</h2>
-               <form action="<?php echo base_url(); ?>index.php/Penyerahan_waste_produksi/tiga_penyerahan_waste_produksi" method="get">
+                <form id="form-akhir" action="<?php echo base_url(); ?>index.php//" method="post"> 
                     <thead>
                         <tr>
-                            <th>Nama Waste</th>
-                            <th>Bagian</th>
-                            <th>Jenis Waste</th>
-                            <th>Jumlah Kg</th>
+                            <th>No</th>
+                            <th>No. Bale</th>
+                            <th>Jml Kg</th>
+                            <th>
+                                Check All
+                                <!-- <input type="checkbox" onClick="toggle(this)"> -->
+                            </th>
+
                         </tr>
                     </thead>
                     <tbody>
-                       <?php
-                        foreach ($input_data as $key => $value)
-                        {
-                        ?>
-                        <tr>
-                            <?php
-                            //Panggil Function sesuai di controller
+                          <?php 
+                            $no = 1;
+                            if(!empty($hasil_balepress)){
+                            foreach ($hasil_balepress as $key => $value) {
+                         ?>
+                     <tr>
+                        <td><?php echo $no++ ?></td>
+                        <td><input type="hidden" name="no_bale[]" value="<?php echo $value->no_bale ?>"><?php echo $value->no_bale ?></td>
+                        <td><input type="hidden" name="shift[]" value="<?php echo $value->shift ?>"><?php echo $value->shift ?></td>
+                        <td><input type="hidden" name="jml_kg[]" value="<?php echo $value->jml_kg ?>"><?php echo $value->jml_kg ?></td>
+                        <td><input type="checkbox" name="input_data_id[]" value="<?php echo $value->id ?>" form="form-akhir"></td>
+                        
 
-                            //dari tanda tanya html tanggal berubah menjadi varibel tanggal dari cotroller yang menerima data halaman sebelumnnya 
-                            ?>
-                            <td><a href="<?php echo base_url ();?>index.php/Hasil_balepress/pengeluaran_data?tanggal=<?php echo $tanggal ?>&nama_waste=<?php echo $value->nama_waste ?>&jenis_waste=<?php echo $value->jenis_waste ?>&bagian=<?php echo $value->bagian ?>&jumlah_bale=<?php echo $jumlah_bale ?>"><?php echo $value->nama_waste; ?></a></td>
-                            <td><?php echo $value->bagian; ?></td>
-                             <td><?php echo $value->jenis_waste; ?></td>
-                            <!-- <td><?php echo $value->tanggal; ?></td> -->
-                           <!--  <td><?php echo $value->jml_karung; ?></td> -->
-                            <td><?php echo $value->berat; ?></td>
-                            
-
-                        </tr>
-                        <?php
+                     </tr>
+                         <?php 
                             }
-                        ?>
+                        }   
+                          ?>
                     </tbody>
-               <!--  </form> -->
+                    <td><input type="submit" name="simpan" class="btn btn-primary"></td>
+                </form>
             </table>
         </div>
 

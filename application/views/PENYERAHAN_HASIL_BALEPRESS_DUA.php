@@ -35,20 +35,24 @@ $this->load->view('template/sidebar');
 
 <!-- Main content -->
 <div class="container" style="width: 800px; margin-top: 50px;">
-            <table class="table">
+            <table class="table text-center">
                 <h2 class="text-center py-3">Penyerahan Hasil Balepress</h2>
-               <form action="<?php echo base_url(); ?>index.php/Penyerahan_waste_produksi/tiga_penyerahan_waste_produksi" method="get">
+                <!-- <form action="<?php echo base_url(); ?>index.php/PENYERAHAN_HASIL_BALEPRESS/PENYERAHAN_HASIL_BALEPRESS_DUA" method="get"> -->
                     <thead>
                         <tr>
                             <th>Nama Waste</th>
                             <th>Bagian</th>
                             <th>Jenis Waste</th>
+                            <!-- <th>Tanggal Hasil Balepress</th> -->
+                            <th>Jumlah Balepress</th>
                             <th>Jumlah Kg</th>
                         </tr>
                     </thead>
                     <tbody>
-                       <?php
-                        foreach ($input_data as $key => $value)
+                      <?php
+                        $no = 1;
+                        if(!empty($hasil_balepress)){
+                        foreach ($hasil_balepress as $key => $value)
                         {
                         ?>
                         <tr>
@@ -57,17 +61,20 @@ $this->load->view('template/sidebar');
 
                             //dari tanda tanya html tanggal berubah menjadi varibel tanggal dari cotroller yang menerima data halaman sebelumnnya 
                             ?>
-                            <td><a href="<?php echo base_url ();?>index.php/Hasil_balepress/pengeluaran_data?tanggal=<?php echo $tanggal ?>&nama_waste=<?php echo $value->nama_waste ?>&jenis_waste=<?php echo $value->jenis_waste ?>&bagian=<?php echo $value->bagian ?>&jumlah_bale=<?php echo $jumlah_bale ?>"><?php echo $value->nama_waste; ?></a></td>
+                            <td><a href="<?php echo base_url ();?>index.php/PENYERAHAN_HASIL_BALEPRESS/pengeluaran_data_hasil_balepress?tanggal=<?php echo $value->tanggal ?>&nama_waste=<?php echo $value->nama_waste ?>&jenis_waste=<?php echo $value->jenis_waste ?>&bagian=<?php echo $value->bagian ?>&tanggal=<?php echo $value->tanggal ?>"><?php echo $value->nama_waste; ?></a></td>
                             <td><?php echo $value->bagian; ?></td>
-                             <td><?php echo $value->jenis_waste; ?></td>
-                            <!-- <td><?php echo $value->tanggal; ?></td> -->
-                           <!--  <td><?php echo $value->jml_karung; ?></td> -->
+                            <td><?php echo $value->jenis_waste; ?></td>
+                           <!-- <td><?php echo $value->tanggal_pengeluaran; ?></td> -->
+                            <td><?php echo $value->jml_balepress; ?></td>
                             <td><?php echo $value->berat; ?></td>
+                            <!-- <td><?php echo $value->status; ?></td> -->
+
                             
 
                         </tr>
                         <?php
                             }
+                        }
                         ?>
                     </tbody>
                <!--  </form> -->

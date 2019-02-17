@@ -36,7 +36,7 @@ $this->load->view('template/sidebar');
 <!-- Main content -->
 <div class="container" style="width: 500px; margin-top: 50px;">
                 <table class="table">
-                    <h1 class="text-center">Penyerahan Waste Produksi</h1>
+                    <h1 class="text-center">Penyerahan Waste Produksi<?php echo $this->session->userdata('tujuan2') ?></h1>
                     <br>
                     <form action="<?php echo base_url(); ?>index.php/Penyerahan_waste_produksi/halaman_dua_penyerahan_waste_produksi" method="get">
                         <tr>

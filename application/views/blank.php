@@ -10,7 +10,7 @@ $this->load->view('template/sidebar');
 <section class="content-header">
     <h1>
         Home
-        <small>Welcome User</small>
+        <small>Welcome User <?php echo $this->session->userdata('loger');?></small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>

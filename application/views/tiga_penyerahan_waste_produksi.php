@@ -46,12 +46,12 @@ $this->load->view('template/sidebar');
                             <th>Jml Kg</th>
                             <th>
                                 Check All
-                                <!-- <input type="checkbox" onClick="toggle(this)"> -->
+                                <input type="checkbox" id="checkall-btn">
                             </th>
 
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="tbody">
                           <?php 
                             $no = 1;
                             if(!empty($input_data)){
@@ -62,7 +62,7 @@ $this->load->view('template/sidebar');
                         <td><input type="hidden" name="no_karung[]" value="<?php echo $value->no_karung ?>"><?php echo $value->no_karung ?></td>
                         <td><input type="hidden" name="shift[]" value="<?php echo $value->shift ?>"><?php echo $value->shift ?></td>
                         <td><input type="hidden" name="jml_kg[]" value="<?php echo $value->jml_kg ?>"><?php echo $value->jml_kg ?></td>
-                        <td><input type="checkbox" name="input_data_id[]" value="<?php echo $value->id ?>" form="form-akhir"></td>
+                        <td><input type="checkbox" class="checkbox" name="input_data_id[]" value="<?php echo $value->id ?>" form="form-akhir"></td>
                         
 
                      </tr>
@@ -76,6 +76,13 @@ $this->load->view('template/sidebar');
             </table>
         </div>
 
+<script type="text/javascript">
+    // $("#checkall-btn").click(function () {
+    //     $(".checkbox").each(function () {
+    //         $(this).prop("checked", true);
+    //     });
+    // });
+</script>
 
             
 

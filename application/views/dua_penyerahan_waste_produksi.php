@@ -36,7 +36,7 @@ $this->load->view('template/sidebar');
 <!-- Main content -->
 <div class="container" style="width: 800px; margin-top: 50px;">
             <table class="table">
-                <h2 class="text-center py-3">Penyerahan Waste Produksi</h2>
+                <h2 class="text-center py-3">Penyerahan Waste Produksi<?php echo $this->session->userdata('tujuan2') ?></h2>
                <!--  <form action="<?php echo base_url(); ?>index.php/Penyerahan_waste_produksi/tiga_penyerahan_waste_produksi" method="get"> -->
                     <thead>
                         <tr>

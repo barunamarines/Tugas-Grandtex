@@ -18,7 +18,10 @@ class Hasil_balepress extends CI_Controller {
 		//terima data dari halaman sebelumnya
 		$data['tanggal']=date('Y-m-d', strtotime($this->input->get('tanggal')));
 
-		// $data['tujuan']=$this->input->get('tujuan');
+		$data['jumlah_bale']=$this->input->get('jumlah_bale');
+
+		$data['jml_balepress']=$this->input->get('jml_balepress');
+
 
 		// echo json_encode(strtotime($this->input->get('tanggal'))); 
 		// exit();
@@ -52,17 +55,19 @@ class Hasil_balepress extends CI_Controller {
 		$data['nama_waste']=$this->input->get('nama_waste');
 		$data['jenis_waste']=$this->input->get('jenis_waste');
 		$data['bagian']=$this->input->get('bagian');
+		$data['jumlah_bale']=$this->input->get('jumlah_bale');
 		// $data['asal_waste']=$this->input->get('asal_waste');
 		// $data['tujuan']=$this->input->get('tujuan');
 		
-		// $data['no_karung']=$this->input->get('no_karung');
+		// $data['no_bale']=$this->input->get('no_bale');
 		// $data['shift']=$this->input->get('shift');
 		// $data['jml_karung']=$this->input->get('jml_karung');
 		$data['kilogram']=$this->input->get('jml_kg');
 		// $data['user']=$this->input->get('user');
 		// $data['timestamp']=$this->input->get('timestamp');
 		// $data['status']=$this->input->get('status');
-		$data['tanggal_pengeluaran']=$this->input->get('tanggal_pengeluaran');
+		$data['tanggal']=$this->input->get('tanggal');
+		// $data['tanggal']=$this->input->get('tanggal');
 
 
 		
@@ -78,14 +83,21 @@ class Hasil_balepress extends CI_Controller {
 			// 'jml_karung' => $data['jml_karung'],
 			// 'jml_kg' => $data['jml_kg']
 			
+
 	);
-		$data['input_data']=$this->Gtx_model->panggil_fungsi_hasil_balepress($where);
+		// $data['ambil_data']=$this->Gtx_model->panggil_fungsi_hasil_balepress($where);
+
+		// echo json_encode($data['ambil_data']);
+		// exit();
+
 		$this->load->view('hasil_balepress_tiga',$data);
+
+
 
 	}
 
 	//masukan data ke databse, gradi (TIGA HALAMAN_WASTE_PRODUKSI)
-	public function tiga_penyerahan_waste_produksi_ke_database()
+	public function tiga_input_hasil_balepress_ke_database()
 	{
 		/**
 		 * Terima data dari view (name)
@@ -95,27 +107,38 @@ class Hasil_balepress extends CI_Controller {
 		//variabel fungsi yg di kanan hrs sesuai dengan name di view yg ngirim data
 
 		//karna di view pengeluaran akhir detail ada 3 perintah yg akan di kirim, maka di controller juga harus 3 di bagian terima data
-		$data['no_karung'] = $this->input->post('no_karung');
-		//variabel array
+		$data['user'] = $this->input->post('user');
+		$data['nama_waste'] = $this->input->post('nama_waste');
+		//variabel array YANG WAJIB ADA DI COUNT FOR
+		$data['no_bale'] = $this->input->post('no_bale');
 		$data['shift'] = $this->input->post('shift');
 		$data['kilogram'] = $this->input->post('kilogram');
 		
 		//stok_id menjadi patokan siapa yg disimpan ke database
 		//input_data_id berbentuk array krn berkemungkinan lebih dari satu
 		$data['input_data_id'] = $this->input->post('input_data_id');
-		$data['tanggal'] = $this->input->get('tanggal');
 
-		$data['tujuan'] = $this->input->get('tujuan');
+
+		$data['tanggal'] = $this->input->get('tanggal');
+		$data['user'] = $this->input->get('user');
+
+		$data['jumlah_bale'] = $this->input->get('jumlah_bale');
+
+
+
+		// $data['jumlah_bale'] = $this->session->userdata('jumlah_bale');
+
+		// $data['tujuan'] = $this->input->get('tujuan');
 		
 		// echo json_encode($this->input->post($data['tujuan']));
 		// exit();
 		
 		$where=array();
 		//perulangan sebanyak input_data_id
-		for ($i=0; $i < count($data['input_data_id']); $i++) { 
+		for ($i=0; $i < count($data['no_bale']); $i++) { 
 			//dari input_data_id, memproses data yang lain jenis_kapas dll
-			$this->db->where('id', $data['input_data_id'][$i]);
-			$input_data = $this->db->get('waste_produksi'); //285-286 = menggunakan model utk tidak menggunakan db
+			$this->db->where('nama_waste', $data['nama_waste']);
+			$input_data = $this->db->get('stock_waste_produksi'); //285-286 = menggunakan model utk tidak menggunakan db
 			//hanya mengambil 1 baris dari tabel dan mengubah format hasil menjadi array
 			$input_data = $input_data->row_array();
 			
@@ -129,18 +152,19 @@ class Hasil_balepress extends CI_Controller {
 				'nama_waste' => $input_data['nama_waste'],
 				'jenis_waste' => $input_data['jenis_waste'],
 				'bagian' => $input_data['bagian'],
-				'asal_waste' => $input_data['asal_waste'],
-				'no_karung' => $input_data['no_karung'],
-				'shift' => $input_data['shift'],
-				'jml_karung' => $input_data['jml_karung'],//jangan lupa direvisi, 1
+				// 'asal_waste' => $input_data['asal_waste'],
+				'no_bale' => $data['no_bale'][$i],
+				'shift' => $data['shift'][$i],
+				'jml_balepress' => $data['jumlah_bale'],//jangan lupa direvisi, 1
 				'jml_kg' => $input_data['jml_kg'],
-				'user' => $input_data['user'],
-				'timestamp' => $input_data['timestamp'],
+				'user' => '',
+				// 'timestamp' => $input_data['timestamp'],
+
 				
 			);
 			// $where[]=array('id'=>$input_data['id'],'status'=>1);
 			
-			$this->db->insert('penyerahan_waste_produksi',$masuk_data);	
+			$this->db->insert('hasil_balepress',$masuk_data);	
 			
 			
 		}
