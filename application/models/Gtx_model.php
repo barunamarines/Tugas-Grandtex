@@ -21,21 +21,26 @@
    	 	//input data berasal dari tabel database hasil waste_produksi
 	    public function tampil_data()
 	    {
-	    	$this->db->select("nama_waste,jenis_waste,bagian,asal_waste,no_karung,shift,jml_karung,user,SUM(jml_kg) as berat,SUM(id) as id,tanggal,timestamp,status");
+	    	// $this->db->select("nama_waste,jenis_waste,bagian,asal_waste,no_karung,shift,jml_karung,user,SUM(jml_kg) as berat,SUM(id) as id,tanggal,timestamp,status");
 	    
-        	$this->db->group_by("nama_waste,jenis_waste,bagian,asal_waste,no_karung,shift,jml_karung,user,tanggal,timestamp,status");
+      //   	$this->db->group_by("nama_waste,jenis_waste,bagian,asal_waste,no_karung,shift,jml_karung,user,tanggal,timestamp,status");
+
+	        $this->db->select("nama_waste,jenis_waste,bagian,tanggal, SUM(jml_karung) AS jumlah_karung, SUM(jml_kg) AS jumlah_berat");
+	        $this->db->group_by("nama_waste,jenis_waste,bagian,tanggal");
+	        $this->db->where("status = 0");
         
-        //varibel data_stok/input_data berasal dari tabel hasil_bpw
-        $tampil_data=$this->db->get('waste_produksi');
-        return $tampil_data->result();
+	        //varibel data_stok/input_data berasal dari tabel hasil_bpw
+	        $tampil_data=$this->db->get('waste_produksi');
+	        return $tampil_data->result();
     	}
 
     	//tampilkan data input_banyak secara detail
     	public function panggil_fungsi($where)
 	    {
 	        $this->db->where($where);
-	        // $this->db->where('status=0');
+	        $this->db->where('status=0');
 	        //varibel data_stok/input_data berasal dari tabel input data banyak
+
 	        $input_data=$this->db->get('waste_produksi');
 
 	        
@@ -56,6 +61,10 @@
 	    	$this->db->select("nama_waste,jenis_waste,bagian,SUM(jml_kg) as berat,SUM(jml_karung) as karung");
 	    
         	$this->db->group_by("nama_waste,jenis_waste,bagian,jml_karung,jml_kg");
+
+        	//where untuk memanggil data sesuai dengan nama_waste
+        	// $this->db->where('nama_waste',$input_data);
+        	// $this->db->where('nama_waste' = 'nama_waste,jenis_waste,bagian,)
         
         //varibel data_stok/input_data berasal dari tabel hasil_bpw
         $tampil_data=$this->db->get('stock_waste_produksi');

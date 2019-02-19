@@ -89,7 +89,7 @@ class Dashboard1 extends CI_Controller {
 				'jenis_waste' => $row['jenis_waste'],
 				'user' => $row['user'],
 				'bagian' => $row['bagian'],
-				'status' => 0
+				'status' => 1
 				
 			);
 

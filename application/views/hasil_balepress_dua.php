@@ -36,8 +36,8 @@ $this->load->view('template/sidebar');
 <!-- Main content -->
 <div class="container" style="width: 800px; margin-top: 50px;">
             <table class="table">
-                <h2 class="text-center py-3">Penyerahan Hasil Balepress</h2>
-               <form action="<?php echo base_url(); ?>index.php/Penyerahan_waste_produksi/tiga_penyerahan_waste_produksi" method="get">
+                <h2 class="text-center py-3">Hasil Balepress</h2>
+              <!--  <form action="<?php echo base_url(); ?>index.php/Penyerahan_waste_produksi/tiga_penyerahan_waste_produksi" method="get"> -->
                     <thead>
                         <tr>
                             <th>Nama Waste</th>

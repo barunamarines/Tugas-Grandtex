@@ -4,7 +4,7 @@ $this->load->view('template/head');
 
 <!--tambahkan custom css disini-->
 <!-- iCheck -->
-<link href="<?php echo base_url('assets/AdminLTE-2.0.5/plugins/iCheck/flat/blue.css') ?>" rel="stylesheet" type="text/css" />
+
 <!-- Morris chart -->
 <link href="<?php echo base_url('assets/AdminLTE-2.0.5/plugins/morris/morris.css') ?>" rel="stylesheet" type="text/css" />
 <!-- jvectormap -->
@@ -37,10 +37,10 @@ $this->load->view('template/sidebar');
 <div class="container" style="width: 600px; margin-top: 50px;">
             <table class="table text-center">
                 <h2 class="text-center py-3">Penyerahan Waste Produksi</h2>
-                <form id="form-akhir" action="<?php echo base_url(); ?>index.php/Penyerahan_waste_produksi/tiga_penyerahan_waste_produksi_ke_database?tanggal=<?php echo $tanggal?>" method="post"> 
+                <form id="form-akhir" action="<?php echo base_url(); ?>index.php/Penyerahan_waste_produksi/tiga_penyerahan_waste_produksi_ke_database?tanggal=<?php echo $tanggal_penyerahan?>" method="post"> 
                     <thead>
                         <tr>
-                            <th>No <?php echo $this->session->userdata('tujuan'); ?></th>
+                            <th>No <!-- <?php echo $this->session->userdata('tujuan'); ?> --></th>
                             <th>No. Karung</th>
                             <th>Shift</th>
                             <th>Jml Kg</th>
@@ -115,7 +115,7 @@ $this->load->view('template/js');
 <!-- Bootstrap WYSIHTML5 -->
 <script src="<?php echo base_url('assets/AdminLTE-2.0.5/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') ?>" type="text/javascript"></script>
 <!-- iCheck -->
-<script src="<?php echo base_url('assets/AdminLTE-2.0.5/plugins/iCheck/icheck.min.js') ?>" type="text/javascript"></script>
+
 
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="<?php echo base_url('assets/AdminLTE-2.0.5/dist/js/pages/dashboard.js') ?>" type="text/javascript"></script>

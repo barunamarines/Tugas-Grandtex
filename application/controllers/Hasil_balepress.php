@@ -5,7 +5,13 @@ class Hasil_balepress extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('hasil_bale_press');
+		$panggil_data=$this->db->get('stock_waste_produksi');
+
+		//siapkan data untuk dikirim ke view 1 (hasil_bale_press)
+		$data=array();
+		$data['ambil_data']=$panggil_data;
+
+		$this->load->view('hasil_bale_press',$data);
 	}
 
 	public function hasil_balepress_dua()
@@ -33,6 +39,9 @@ class Hasil_balepress extends CI_Controller {
 
 		//ambil data waste_produksi dari database
 		$data['input_data'] = $this->Gtx_model->tampil_data_hasil_balepress();
+
+		// $this->db->where('nama_waste',$data);
+		
 
 		//kirim data ke view utk tanggal
 		$this->load->view('hasil_balepress_dua',$data);

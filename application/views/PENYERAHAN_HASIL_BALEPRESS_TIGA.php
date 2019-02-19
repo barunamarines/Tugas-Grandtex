@@ -37,7 +37,7 @@ $this->load->view('template/sidebar');
 <div class="container" style="width: 600px; margin-top: 50px;">
             <table class="table text-center">
                 <h2 class="text-center py-3">Penyerahan Hasil Balepress</h2>
-                <form id="form-akhir" action="<?php echo base_url(); ?>index.php//" method="post"> 
+                <form id="form-akhir" action="<?php echo base_url(); ?>index.php/PENYERAHAN_HASIL_BALEPRESS/tiga_penyerahan_waste_produksi_ke_database?tanggal=<?php echo $tanggal ?>" method="post"> 
                     <thead>
                         <tr>
                             <th>No</th>
@@ -59,7 +59,7 @@ $this->load->view('template/sidebar');
                      <tr>
                         <td><?php echo $no++ ?></td>
                         <td><input type="hidden" name="no_bale[]" value="<?php echo $value->no_bale ?>"><?php echo $value->no_bale ?></td>
-                        <td><input type="hidden" name="shift[]" value="<?php echo $value->shift ?>"><?php echo $value->shift ?></td>
+                        <!-- <td><input type="hidden" name="shift[]" value="<?php echo $value->shift ?>"><?php echo $value->shift ?></td> -->
                         <td><input type="hidden" name="jml_kg[]" value="<?php echo $value->jml_kg ?>"><?php echo $value->jml_kg ?></td>
                         <td><input type="checkbox" name="input_data_id[]" value="<?php echo $value->id ?>" form="form-akhir"></td>
                         

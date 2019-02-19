@@ -62,15 +62,15 @@ class Penyerahan_waste_produksi extends CI_Controller {
 		$data['user']=$this->input->get('user');
 		$data['timestamp']=$this->input->get('timestamp');
 		$data['status']=$this->input->get('status');
-		$data['tanggal_pengeluaran']=$this->input->get('tanggal_pengeluaran');
+		$data['tanggal_penyerahan']=$this->input->get('tanggal_penyerahan');
 		
 
 		$where=array(
-			// 'tanggal'=> $data['tanggal'],
+			'tanggal'=> $data['tanggal'],
 			'nama_waste'=> $data['nama_waste'],
 			'jenis_waste'=> $data['jenis_waste'],
 			'bagian'=> $data['bagian'],
-			'asal_waste'=> $data['asal_waste'],
+			// 'asal_waste'=> $data['asal_waste'],
 			// 'no_karung' => $data['no_karung'],
 			// 'shift' => $data['shift'],
 			// 'jml_karung' => $data['jml_karung'],
@@ -132,6 +132,9 @@ class Penyerahan_waste_produksi extends CI_Controller {
 				//dikanan : data yg mau disimpannya + harus sama dengan variabel penampung diatas
 				//variabel array (*['jumlah_kilogram']) di belakangnya harus menggunakan variabel index (*$i)
 				'tanggal' => $data['tanggal'],
+
+				//tambah 3 varibel karna kata kunci di stock_waste_produksi yg kita pilih 3
+				'id_stock' => $input_data['nama_waste'].' '.$input_data['jenis_waste'].' '.$input_data['bagian'],
 				'tujuan' => $data['tujuan'],
 				'nama_waste' => $input_data['nama_waste'],
 				'jenis_waste' => $input_data['jenis_waste'],
@@ -148,8 +151,6 @@ class Penyerahan_waste_produksi extends CI_Controller {
 			// $where[]=array('id'=>$input_data['id'],'status'=>1);
 			
 			$this->db->insert('penyerahan_waste_produksi',$masuk_data);	
-			
-			
 		}
 
 		// $update=$this->db->update_batch('waste_produksi',$where,'id');

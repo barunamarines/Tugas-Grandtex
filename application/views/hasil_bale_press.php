@@ -52,7 +52,20 @@ $this->load->view('template/sidebar');
                         </tr>
                         <tr>
                             <th><label for="nama_waste">Nama Waste</label></th>
-                                <td><input type="text" name="nama_waste" id="nama_waste" class="form-control" required autofocus maxlength="20" placeholder="Input Nama Waste" value=""></td>
+                                <td>
+                                    <select class="form-control" id="nama_waste" required name="nama_waste">
+                                        <option value="">Pilih Nama Waste</option>
+                                        <?php 
+                                            foreach ($ambil_data->result() as $row)
+                                            {
+                                            ?>
+                                            <!-- $row adalah name dari select class atau nama ID -->
+                                            <option value="<?php echo $row->nama_waste; ?>"><?php echo $row->nama_waste; ?></option>
+                                            <?php
+                                        }
+                                            ?>
+                                </td>
+                                    </select>
                         </tr>
                         <tr>
                             <th><label for="jumlah_bale">Jumlah Bale</label></th>
